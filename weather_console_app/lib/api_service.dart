@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'config.dart';
 
 class ApiService {
-
   //CURRENT WEATHER METHOD
   Future<Weather> getCurrentWeather(String cityName) async {
     //https://api.weatherapi.com/v1/current.json?key=0aa08a9cb9ba4ac5a2365629242802&q=London&aqi=no
@@ -46,13 +45,16 @@ class ApiService {
     }
 
     final jsonResponse = jsonDecode(response.body);
-    final forecastList = List<Map<String, dynamic>>.from(jsonResponse['forecast']['forecastday']); 
+    final forecastList = List<Map<String, dynamic>>.from(
+        jsonResponse['forecast']['forecastday']);
 
     if (jsonResponse.isEmpty) {
       throw WeatherApiException('Forecast data for $cityName not found');
     }
 
-    return forecastList.map((forecastData) => Forecast.fromJson(forecastData)).toList();
+    return forecastList
+        .map((forecastData) => Forecast.fromJson(forecastData))
+        .toList();
   }
 }
 
