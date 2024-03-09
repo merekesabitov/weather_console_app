@@ -23,4 +23,20 @@ class Weather {
       tempC: currentData['temp_c'].toDouble(),
     );
   }
+
+  @override
+  String toString() => '''
+  Last updated: $lastUpdated
+  City name: $cityName
+  Temp °C: $tempC °C
+  Feels like: $feelsLikeC °C
+  Condition: $condition
+  ''';
+
+  class Forecast {
+    String date;
+    double minTempC;
+    double maxTempC;
+    String condition;
+  }
 }
